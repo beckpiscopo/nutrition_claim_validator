@@ -1,18 +1,17 @@
 ########################
-#  Python artefacts    #
+#  Python artifacts    #
 ########################
 __pycache__/
 *.py[cod]
 *$py.class
 *.so
 
+
 ########################
 #  Virtual-envs        #
 ########################
 .venv/
-venv/
-env/
-ENV/
+
 
 ########################
 #  Build/dist outputs  #
@@ -35,10 +34,6 @@ htmlcov/
 .pyre/
 .pytype/
 
-########################
-#  Notebooks           #
-########################
-.ipynb_checkpoints/
 
 ########################
 #  Secrets & configs   #
@@ -50,13 +45,7 @@ htmlcov/
 *.crt
 .streamlit/secrets.toml
 
-########################
-#  IDE/editor clutter  #
-########################
-.vscode/
-.idea/
-*.sublime-*
-.ropeproject
+
 
 ########################
 #  OS noise            #
@@ -64,7 +53,6 @@ htmlcov/
 .DS_Store
 Thumbs.db
 Desktop.ini
-
 
 
 # Ignore large ML model files
@@ -78,3 +66,4 @@ Desktop.ini
 
 # Ignore model directories (adjust to your actual path)
 models/
+data/
