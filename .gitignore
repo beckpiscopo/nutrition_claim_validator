@@ -64,3 +64,17 @@ htmlcov/
 .DS_Store
 Thumbs.db
 Desktop.ini
+
+
+
+# Ignore large ML model files
+*.bin
+*.pt
+*.h5
+*.ckpt
+*.tflite
+*.onnx
+*.pb
+
+# Ignore model directories (adjust to your actual path)
+models/
