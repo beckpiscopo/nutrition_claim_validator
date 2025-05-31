@@ -1,0 +1,66 @@
+########################
+#  Python artefacts    #
+########################
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+########################
+#  Virtual-envs        #
+########################
+.venv/
+venv/
+env/
+ENV/
+
+########################
+#  Build/dist outputs  #
+########################
+build/
+dist/
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.whl
+
+########################
+#  Tool caches         #
+########################
+.mypy_cache/
+.pytest_cache/
+coverage.*
+htmlcov/
+.dmypy.json
+.pyre/
+.pytype/
+
+########################
+#  Notebooks           #
+########################
+.ipynb_checkpoints/
+
+########################
+#  Secrets & configs   #
+########################
+.env
+.env.*
+*.pem
+*.key
+*.crt
+.streamlit/secrets.toml
+
+########################
+#  IDE/editor clutter  #
+########################
+.vscode/
+.idea/
+*.sublime-*
+.ropeproject
+
+########################
+#  OS noise            #
+########################
+.DS_Store
+Thumbs.db
+Desktop.ini

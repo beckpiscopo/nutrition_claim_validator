@@ -1,0 +1,44 @@
+TERM: cramps | CONTEXT: None | NORMALIZED: cramp
+TERM: upset stomach | CONTEXT: None | NORMALIZED: upset stomach
+TERM: menstrual cramps | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: menstral cramps | CONTEXT: None | FUZZY_NORMALIZED: menstrual cramps
+TERM: upset stomack | CONTEXT: None | FUZZY_NORMALIZED: upset stomach
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: cramps | CONTEXT: None | NORMALIZED: cramp
+TERM: completely unknown | CONTEXT: None | FUZZY_NORMALIZED: complete
+TERM: menstrual cramps | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: menstral cramps | CONTEXT: None | FUZZY_NORMALIZED: menstrual cramps
+TERM: upset stomack | CONTEXT: None | FUZZY_NORMALIZED: upset stomach
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: cramps | CONTEXT: None | NORMALIZED: cramp
+TERM: completely unknown | CONTEXT: None | FUZZY_NORMALIZED: complete
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: "ginger reduces pain from period cramping" | CONTEXT: "ginger reduces pain from period cramping" | FUZZY_NORMALIZED: period
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: menstrual cramps | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: dysmenorrhea | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: menstral cramps | CONTEXT: None | FUZZY_NORMALIZED: menstrual cramps
+TERM: period cramping | CONTEXT: None | FUZZY_NORMALIZED: adenosine monophosphate (amp)
+TERM: completely unknown term | CONTEXT: None | FUZZY_NORMALIZED: complete
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: menstrual cramps | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: dysmenorrhea | CONTEXT: None | NORMALIZED: menstrual cramps
+TERM: menstral cramps | CONTEXT: None | FUZZY_NORMALIZED: menstrual cramps
+TERM: period cramping | CONTEXT: None | FUZZY_NORMALIZED: adenosine monophosphate (amp)
+TERM: completely unknown term | CONTEXT: None | FUZZY_NORMALIZED: complete
+TERM: period pain | CONTEXT: None | FUZZY_NORMALIZED: aortic valve insufficiency
+TERM: ginger | CONTEXT: {'subject': 'ginger', 'object': 'pain from period cramping'} | NORMALIZED: ginger
+TERM: ginger | CONTEXT: {'subject': 'ginger', 'object': 'pain from period cramping'} | NORMALIZED: ginger
+TERM: ginger | CONTEXT: {'subject': 'ginger', 'object': 'pain from period cramping'} | NORMALIZED: ginger
+TERM: ginger | CONTEXT: {'subject': 'ginger', 'object': 'pain from period cramping'} | NORMALIZED: ginger
+TERM: ginger | CONTEXT: ginger pain from period cramping | NORMALIZED: ginger
+TERM: ginger | CONTEXT: ginger pain from period cramping | NORMALIZED: ginger
+TERM: liver damage | CONTEXT: Kratom liver damage | NORMALIZED: liver damage
+TERM: liver damage | CONTEXT: Mitragyna speciosa liver damage | NORMALIZED: liver damage
+TERM: liver damage | CONTEXT: Mitragyna speciosa liver damage | NORMALIZED: liver damage
+TERM: liver damage | CONTEXT: Kratom liver damage | NORMALIZED: liver damage
