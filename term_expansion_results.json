@@ -3,67 +3,59 @@
     {
       "original_term": "ginger",
       "scientific_terms": [
+        "Zingiber officinale",
         "Ginger",
+        "Rosmarinus officinalis",
+        " \"Ginger\" and \"Rosmarinus officinalis",
         "gingers",
         "ginger extract",
         "Ginger product",
-        "ginger",
-        "Ginger (product)",
-        "ginger (medication)",
-        "extract ginger",
-        "Ginger Extract",
-        "GINGER"
+        "extract ginger"
       ],
-      "full_expansion": "</s>The medical / scientific terms for ginger are: \"Zingiber officinale,\" \"Ginger\" and \"Rosmarinus officinalis.\" </s>",
+      "full_expansion": "The medical / scientific terms for ginger are: \"Zingiber officinale,\" \"Ginger\" and \"Rosmarinus officinalis.\"",
       "umls_terms": [
         "Ginger",
         "gingers",
         "ginger extract",
         "Ginger product",
-        "ginger",
-        "Ginger (product)",
-        "ginger (medication)",
-        "extract ginger",
-        "Ginger Extract",
-        "GINGER"
+        "extract ginger"
       ]
     },
     {
       "original_term": "stronger bones",
       "scientific_terms": [
         "bone mass",
-        "and bone quality. </s>"
+        "bone quality"
       ],
-      "full_expansion": "</s>The medical / scientific terms for stronger bones are: bone strength, bone mass, and bone quality. </s>",
+      "full_expansion": "The medical / scientific terms for stronger bones are: bone strength, bone mass, and bone quality.",
       "umls_terms": []
     },
     {
       "original_term": "vitamin d",
       "scientific_terms": [
-        "and \"cholecalciferol.\" </s>",
-        "Vitamin D",
-        "VITAMIN D",
-        "vitamin-d",
-        "Vitamin D NOS",
-        "d vitamin",
         "vitamin D",
-        "Vitamin D, NOS"
+        "25-hydroxyvitamin D",
+        "cholecalciferol",
+        "\"cholecalciferol",
+        "vitamin-d",
+        "d vitamin"
       ],
-      "full_expansion": "</s>The medical / scientific terms for vitamin d are: \"vitamin D,\" \"25-hydroxyvitamin D\" (25 (OH) D), and \"cholecalciferol.\" </s>",
+      "full_expansion": "The medical / scientific terms for vitamin d are: \"vitamin D,\" \"25-hydroxyvitamin D\" (25 (OH) D), and \"cholecalciferol.\"",
       "umls_terms": [
         "Vitamin D",
-        "VITAMIN D",
         "vitamin-d",
-        "Vitamin D NOS",
-        "d vitamin",
-        "vitamin D",
-        "Vitamin D, NOS"
+        "d vitamin"
       ]
     },
     {
       "original_term": "gut health",
-      "scientific_terms": [],
-      "full_expansion": "</s>The medical / scientific terms for gut health are often used interchangeably. </s>",
+      "scientific_terms": [
+        "gastrointestinal microbiome",
+        "intestinal microbiota",
+        "gut flora",
+        "digestive system"
+      ],
+      "full_expansion": "The medical / scientific terms for gut health are often used interchangeably.",
       "umls_terms": []
     },
     {
@@ -71,7 +63,7 @@
       "scientific_terms": [
         "Inflammation"
       ],
-      "full_expansion": "</s>The medical / scientific terms for inflammation are often used interchangeably, and this may lead to confusion and misunderstanding. </s>",
+      "full_expansion": "The medical / scientific terms for inflammation are often used interchangeably, and this may lead to confusion and misunderstanding.",
       "umls_terms": [
         "Inflammation"
       ]

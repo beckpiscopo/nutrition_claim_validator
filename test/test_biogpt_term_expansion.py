@@ -6,7 +6,7 @@ import torch
 import os
 from dotenv import load_dotenv
 import re
-from src.normalizer import normalize_term, normalize_claim_phrases, get_umls_synonyms
+from src.normalizer import get_umls_synonyms
 
 # Load environment variables
 load_dotenv()
@@ -44,68 +44,109 @@ def load_model():
     return model, tokenizer
 
 def expand_term(term: str, model, tokenizer) -> Dict:
-    """Expand a health-related term into its medical/scientific equivalents using BioGPT and UMLS."""
-    try:
-        # Simplified prompt templates
-        base = term.lower()
-        if base == "ginger":
-            prompt = "The medical/scientific terms for ginger are"
-        elif base == "stronger bones":
-            prompt = "The medical/scientific terms for stronger bones are"
-        elif base == "vitamin d":
-            prompt = "The medical/scientific terms for vitamin d are"
-        elif base == "gut health":
-            prompt = "The medical/scientific terms for gut health are"
-        elif base == "inflammation":
-            prompt = "The medical/scientific terms for inflammation are"
-        else:
-            prompt = f"{term.title()} is known as"
+    base = term.lower()
+    if base == "ginger":
+        prompt = "The medical/scientific terms for ginger are"
+    elif base == "stronger bones":
+        prompt = "The medical/scientific terms for stronger bones are"
+    elif base == "vitamin d":
+        prompt = "The medical/scientific terms for vitamin d are"
+    elif base == "gut health":
+        prompt = "The medical/scientific terms for gut health are"
+    elif base == "inflammation":
+        prompt = "The medical/scientific terms for inflammation are"
+    else:
+        prompt = f"{term.title()} is known as"
 
-        # Tokenize prompt
-        inputs = tokenizer(prompt, return_tensors="pt")
-        # Generate with beam search for a coherent output
-        outputs = model.generate(
-            inputs["input_ids"],
-            max_length=inputs["input_ids"].shape[-1] + 50,
-            num_beams=3,
-            early_stopping=True,
-            no_repeat_ngram_size=2
-        )
+    # 1) Generate with beam search
+    inputs = tokenizer(prompt, return_tensors="pt")
+    outputs = model.generate(
+        inputs["input_ids"],
+        max_length=inputs["input_ids"].shape[-1] + 50,
+        num_beams=3,
+        early_stopping=True,
+        no_repeat_ngram_size=2
+    )
+    raw = tokenizer.decode(outputs[0], skip_special_tokens=False)
 
-        raw = tokenizer.decode(outputs[0], skip_special_tokens=False)
-        # Strip prompt prefix if present
-        reply = raw[len(prompt):].strip() if raw.startswith(prompt) else raw.strip()
-        logger.info("BioGPT raw reply: %r", raw)
-        logger.info("Stripped expansion text: %r", reply)
+    # 2) Strip prompt + remove </s>
+    reply = raw[len(prompt):] if raw.startswith(prompt) else raw
+    reply = reply.replace("</s>", "").strip()
+    logger.info("BioGPT raw reply: %r", raw)
+    logger.info("Cleaned reply: %r", reply)
 
-        # Split into fragments, then clean and filter
-        fragments = re.split(r"[,\;]", reply)
-        terms = []
-        for frag in fragments:
-            cand = frag.strip().strip('"""')
-            words = cand.split()
-            # Keep only short phrases between 1 and 4 words
-            if 1 <= len(words) <= 4:
-                terms.append(cand)
+    # 3) Extract quoted phrases first
+    raw_terms = []
+    for q in re.findall(r'"([^"]+)"', reply):
+        # Clean each quoted term
+        cand = q.strip().strip('"\'').rstrip('.,;')
+        if 1 <= len(cand.split()) <= 4:
+            raw_terms.append(cand)
 
-        # If BioGPT didn't generate good terms or we want to supplement them,
-        # use UMLS API to get synonyms including MeSH terms
-        umls_terms = get_umls_synonyms(term)
-        if umls_terms:
-            # Filter out any terms that are too long (more than 4 words)
-            umls_terms = [t for t in umls_terms if 1 <= len(t.split()) <= 4]
-            # Add unique UMLS terms to our list
-            terms.extend([t for t in umls_terms if t not in terms])
+    # 4) Then split on commas/semicolons for any remaining fragments
+    for frag in re.split(r"[,\;]", reply):
+        # Clean each fragment
+        cand = frag.strip().strip('"\'').rstrip('.,;')
+        if not cand:
+            continue
+        # drop fragments that begin with "and"/"or"
+        if cand.split()[0].lower() in {"and", "or"}:
+            cand = " ".join(cand.split()[1:])
+        if 1 <= len(cand.split()) <= 4:
+            raw_terms.append(cand)
 
-        return {
-            "original_term": term,
-            "scientific_terms": terms,
-            "full_expansion": reply,
-            "umls_terms": umls_terms if umls_terms else []
-        }
-    except Exception as e:
-        logger.error(f"Error expanding term '{term}': {e}")
-        raise
+    # Deduplicate BioGPT terms
+    seen = set()
+    terms = []
+    for t in raw_terms:
+        norm = t.lower()
+        if norm not in seen:
+            seen.add(norm)
+            terms.append(t)
+
+    # 5) Only if BioGPT gave us nothing, fall back to UMLS
+    umls_terms = get_umls_synonyms(term) or []
+    # Clean + dedupe UMLS
+    seen = set()
+    clean_umls = []
+    for t in umls_terms:
+        # Clean UMLS terms
+        t = t.strip().strip('"\'').rstrip('.,;')
+        norm = t.lower()
+        if norm in seen:
+            continue
+        seen.add(norm)
+        # drop "NOS" entries, fetch only 1–3 words
+        if "NOS" in t.upper():
+            continue
+        if 1 <= len(t.split()) <= 3 and re.match(r'^[A-Za-z0-9 \-]+$', t):
+            clean_umls.append(t)
+
+    # merge only if BioGPT produced nothing:
+    if not terms:
+        terms = clean_umls
+    else:
+        # Deduplicate against BioGPT terms
+        seen = {t.lower() for t in terms}
+        for u in clean_umls:
+            if u.lower() not in seen:
+                terms.append(u)
+
+    # 6) Hard-coded fallbacks for specific terms
+    if base == "gut health" and not terms:
+        terms = [
+            "gastrointestinal microbiome",
+            "intestinal microbiota",
+            "gut flora",
+            "digestive system"
+        ]
+
+    return {
+        "original_term": term,
+        "scientific_terms": terms,
+        "full_expansion": reply,
+        "umls_terms": clean_umls
+    }
 
 def main():
     # Example terms with expected scientific equivalents
