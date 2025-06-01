@@ -3,42 +3,47 @@
     {
       "original_term": "ginger",
       "scientific_terms": [
-        "\"black ginger.\" The ginger is one of the oldest spices and used in traditional medicine for thousands of years",
-        "particularly for the treatment of diabetes"
+        "Zingiber officinale",
+        "Gingerols",
+        "Shogaols",
+        "Zingerone"
       ],
-      "full_expansion": "\"black ginger.\" The ginger is one of the oldest spices and used in traditional medicine for thousands of years, particularly for the treatment of diabetes"
+      "full_expansion": "</s>The medical / scientific terms for ginger are: \"Zingiber officinale,\" \"Ginger\" and \"Rosmarinus officinalis.\" </s>"
     },
     {
       "original_term": "stronger bones",
       "scientific_terms": [
-        "\"strength",
-        "\" \"strength",
-        "\" \"osteon",
-        "\" and \"bone density.\""
+        "bone mass",
+        "and bone quality. </s>"
       ],
-      "full_expansion": "\"strength,\" \"strength,\" \"osteon,\" and \"bone density.\""
+      "full_expansion": "</s>The medical / scientific terms for stronger bones are: bone strength, bone mass, and bone quality. </s>"
     },
     {
       "original_term": "vitamin d",
       "scientific_terms": [
-        "a steroid hormone and plays an important role in bone metabolism."
+        "and \"cholecalciferol.\" </s>"
       ],
-      "full_expansion": "a steroid hormone and plays an important role in bone metabolism."
+      "full_expansion": "</s>The medical / scientific terms for vitamin d are: \"vitamin D,\" \"25-hydroxyvitamin D\" (25 (OH) D), and \"cholecalciferol.\" </s>"
     },
     {
       "original_term": "gut health",
       "scientific_terms": [
-        "the composition of the microbiota",
-        "with the gut microbiota being a key determinant in the development and function of the immune system."
+        "Gastrointestinal microbiome",
+        "Intestinal microbiota",
+        "Gut flora",
+        "Digestive system"
       ],
-      "full_expansion": "the composition of the microbiota, with the gut microbiota being a key determinant in the development and function of the immune system."
+      "full_expansion": "</s>The medical / scientific terms for gut health are often used interchangeably. </s>"
     },
     {
       "original_term": "inflammation",
       "scientific_terms": [
-        "a complex network of cell-mediated and humoral immune responses that ultimately result in tissue destruction."
+        "Inflammatory response",
+        "Cytokines",
+        "Prostaglandins",
+        "Acute phase response"
       ],
-      "full_expansion": "a complex network of cell-mediated and humoral immune responses that ultimately result in tissue destruction."
+      "full_expansion": "</s>The medical / scientific terms for inflammation are often used interchangeably, and this may lead to confusion and misunderstanding. </s>"
     }
   ]
 }

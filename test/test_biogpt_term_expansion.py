@@ -5,6 +5,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 import torch
 import os
 from dotenv import load_dotenv
+import re
+from src.normalizer import normalize_term, normalize_claim_phrases, get_umls_synonyms
 
 # Load environment variables
 load_dotenv()
@@ -42,48 +44,67 @@ def load_model():
     return model, tokenizer
 
 def expand_term(term: str, model, tokenizer) -> Dict:
-    """Expand a health-related term into its medical/scientific equivalents using BioGPT model."""
+    """Expand a health-related term into its medical/scientific equivalents using BioGPT and UMLS."""
     try:
-        # Use a natural prompt for each term
-        if term.lower() == "ginger":
-            prompt = "Ginger is also known as"
-        elif term.lower() == "stronger bones":
-            prompt = "Scientific terms for stronger bones include"
-        elif term.lower() == "vitamin d":
-            prompt = "Vitamin D is also called"
-        elif term.lower() == "gut health":
-            prompt = "Gut health is related to"
-        elif term.lower() == "inflammation":
-            prompt = "Inflammation involves"
+        # Simplified prompt templates
+        base = term.lower()
+        if base == "ginger":
+            prompt = "The medical/scientific terms for ginger are"
+        elif base == "stronger bones":
+            prompt = "The medical/scientific terms for stronger bones are"
+        elif base == "vitamin d":
+            prompt = "The medical/scientific terms for vitamin d are"
+        elif base == "gut health":
+            prompt = "The medical/scientific terms for gut health are"
+        elif base == "inflammation":
+            prompt = "The medical/scientific terms for inflammation are"
         else:
-            prompt = f"Scientific terms for {term} include"
+            prompt = f"{term.title()} is known as"
 
-        # Tokenize and generate
+        # Tokenize prompt
         inputs = tokenizer(prompt, return_tensors="pt")
+        # Generate with beam search for a coherent output
         outputs = model.generate(
             inputs["input_ids"],
-            max_length=32 + len(inputs["input_ids"][0]),
-            num_return_sequences=1,
-            temperature=0.7,
-            do_sample=True,
-            top_p=0.95,
-            repetition_penalty=1.1
+            max_length=inputs["input_ids"].shape[-1] + 50,
+            num_beams=3,
+            early_stopping=True,
+            no_repeat_ngram_size=2
         )
 
-        # Decode the output
-        expanded_terms_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
-        # Remove the prompt from the response
-        expanded_terms_text = expanded_terms_text[len(prompt):].strip()
-        # Split on common delimiters
-        terms = [t.strip().lstrip('0123456789.-() ') for t in expanded_terms_text.split(',') if t.strip()]
+        raw = tokenizer.decode(outputs[0], skip_special_tokens=False)
+        # Strip prompt prefix if present
+        reply = raw[len(prompt):].strip() if raw.startswith(prompt) else raw.strip()
+        logger.info("BioGPT raw reply: %r", raw)
+        logger.info("Stripped expansion text: %r", reply)
+
+        # Split into fragments, then clean and filter
+        fragments = re.split(r"[,\;]", reply)
+        terms = []
+        for frag in fragments:
+            cand = frag.strip().strip('"""')
+            words = cand.split()
+            # Keep only short phrases between 1 and 4 words
+            if 1 <= len(words) <= 4:
+                terms.append(cand)
+
+        # If BioGPT didn't generate good terms or we want to supplement them,
+        # use UMLS API to get synonyms including MeSH terms
+        umls_terms = get_umls_synonyms(term)
+        if umls_terms:
+            # Filter out any terms that are too long (more than 4 words)
+            umls_terms = [t for t in umls_terms if 1 <= len(t.split()) <= 4]
+            # Add unique UMLS terms to our list
+            terms.extend([t for t in umls_terms if t not in terms])
 
         return {
             "original_term": term,
             "scientific_terms": terms,
-            "full_expansion": expanded_terms_text
+            "full_expansion": reply,
+            "umls_terms": umls_terms if umls_terms else []
         }
     except Exception as e:
-        logger.error(f"Error expanding term: {e}")
+        logger.error(f"Error expanding term '{term}': {e}")
         raise
 
 def main():
