@@ -67,3 +67,7 @@ Desktop.ini
 # Ignore model directories (adjust to your actual path)
 models/
 data/
+
+# Specific model directories
+models/biogpt_model/
+models/biogpt_model/**/*

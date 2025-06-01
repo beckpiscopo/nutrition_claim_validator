@@ -1,0 +1,62 @@
+{
+  "claims": [
+    {
+      "original_claim": "Vitamin C helps with immune system function",
+      "key_terms": [
+        "Vitamin D",
+        "Vitamin E",
+        "Vitamin K",
+        "Vitamin D receptor",
+        "Vitamin C",
+        "Vitamin A",
+        "Vitamin B"
+      ],
+      "full_analysis": "Extract the main terms from this health claim. Only list the actual terms mentioned in the claim, separated by commas. Do not add any additional terms. Claim: Vitamin C helps with immune system function Terms: Vitamin D, Vitamin E, Vitamin K, Vitamin D receptor, Vitamin C, Vitamin A, Vitamin B"
+    },
+    {
+      "original_claim": "Regular consumption of green tea may reduce the risk of heart disease",
+      "key_terms": [
+        "Green tea",
+        "tea polyphenols",
+        "green tea catechins",
+        "green teas",
+        "green coffee",
+        "green wine",
+        "green liquor",
+        "green juice",
+        "green soda",
+        "green cherry",
+        "green peppers",
+        "green vegetables",
+        "green fruit",
+        "green leafy vegetables",
+        "and green tea."
+      ],
+      "full_analysis": "Extract the main terms from this health claim. Only list the actual terms mentioned in the claim, separated by commas. Do not add any additional terms. Claim: Regular consumption of green tea may reduce the risk of heart disease Terms: Green tea, tea polyphenols, green tea catechins, green teas, green coffee, green wine, green liquor, green juice, green soda, green cherry, green peppers, green vegetables, green fruit, green leafy vegetables, and green tea."
+    },
+    {
+      "original_claim": "Studies suggest that omega-3 fatty acids can improve cognitive function in older adults",
+      "key_terms": [
+        "omega-3s are associated with a range of health benefits",
+        "including cognitive function."
+      ],
+      "full_analysis": "Extract the main terms from this health claim. Only list the actual terms mentioned in the claim, separated by commas. Do not add any additional terms. Claim: Studies suggest that omega-3 fatty acids can improve cognitive function in older adults Terms: omega-3s are associated with a range of health benefits, including cognitive function."
+    },
+    {
+      "original_claim": "Probiotics have been shown to support digestive health",
+      "key_terms": [
+        "Probiotic is a probiotic",
+        "but it is not a probiotic."
+      ],
+      "full_analysis": "Extract the main terms from this health claim. Only list the actual terms mentioned in the claim, separated by commas. Do not add any additional terms. Claim: Probiotics have been shown to support digestive health Terms: Probiotic is a probiotic, but it is not a probiotic."
+    },
+    {
+      "original_claim": "Daily meditation practice is associated with reduced stress levels",
+      "key_terms": [
+        "Daily mindfulness practice is related to reduced stress Levels",
+        "and Daily meditation is associated to reduced anxiety Levels."
+      ],
+      "full_analysis": "Extract the main terms from this health claim. Only list the actual terms mentioned in the claim, separated by commas. Do not add any additional terms. Claim: Daily meditation practice is associated with reduced stress levels Terms: Daily mindfulness practice is related to reduced stress Levels, and Daily meditation is associated to reduced anxiety Levels."
+    }
+  ]
+}

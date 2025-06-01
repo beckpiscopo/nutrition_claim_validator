@@ -1,0 +1,44 @@
+{
+  "terms": [
+    {
+      "original_term": "ginger",
+      "scientific_terms": [
+        "\"black ginger.\" The ginger is one of the oldest spices and used in traditional medicine for thousands of years",
+        "particularly for the treatment of diabetes"
+      ],
+      "full_expansion": "\"black ginger.\" The ginger is one of the oldest spices and used in traditional medicine for thousands of years, particularly for the treatment of diabetes"
+    },
+    {
+      "original_term": "stronger bones",
+      "scientific_terms": [
+        "\"strength",
+        "\" \"strength",
+        "\" \"osteon",
+        "\" and \"bone density.\""
+      ],
+      "full_expansion": "\"strength,\" \"strength,\" \"osteon,\" and \"bone density.\""
+    },
+    {
+      "original_term": "vitamin d",
+      "scientific_terms": [
+        "a steroid hormone and plays an important role in bone metabolism."
+      ],
+      "full_expansion": "a steroid hormone and plays an important role in bone metabolism."
+    },
+    {
+      "original_term": "gut health",
+      "scientific_terms": [
+        "the composition of the microbiota",
+        "with the gut microbiota being a key determinant in the development and function of the immune system."
+      ],
+      "full_expansion": "the composition of the microbiota, with the gut microbiota being a key determinant in the development and function of the immune system."
+    },
+    {
+      "original_term": "inflammation",
+      "scientific_terms": [
+        "a complex network of cell-mediated and humoral immune responses that ultimately result in tissue destruction."
+      ],
+      "full_expansion": "a complex network of cell-mediated and humoral immune responses that ultimately result in tissue destruction."
+    }
+  ]
+}
